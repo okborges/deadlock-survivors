@@ -1,0 +1,31 @@
+name: Ideia / nova funcionalidade
+description: Sugira uma mecânica, personagem, inimigo, arte ou melhoria
+labels: [ideia]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - Gameplay
+        - Personagem / herói
+        - Inimigo
+        - Arte (pixel art)
+        - Áudio
+        - Interface / HUD
+        - Outro
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Descreva a ideia
+      description: Como funcionaria no jogo? Referências e rascunhos são bem-vindos.
+    validations:
+      required: true
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Participação
+      options:
+        - label: Quero implementar / desenhar isso eu mesmo
