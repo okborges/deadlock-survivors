@@ -20,7 +20,8 @@ Fan game open source, sem fins comerciais, no estilo "survivors" (ondas de inimi
 - `src/textures.ts` — texturas provisórias geradas por código (serão substituídas por pixel art com as mesmas chaves).
 - `src/scenes/GameScene.ts` — mundo, colisões, game over. `src/scenes/HudScene.ts` — interface, lê dados do `registry` (chaves em `HUD_KEYS`).
 - `src/entities/` — uma classe por tipo de objeto (`Player`, `Enemy`, `Bullet`), estendendo `Phaser.Physics.Arcade.Sprite`.
-- `src/systems/` — lógica que roda por frame ou por timer (`AutoFire`, `EnemySpawner`).
+- `src/systems/` — lógica que roda por frame ou por timer (`AutoFire`, `EnemySpawner`, `EnemyHealthBars`).
+- `public/assets/sprites/` — pixel art real (PNG). Spritesheets são carregados no `preload()` da `GameScene`, com caminho e tamanho de quadro em `src/config.ts`.
 
 ## Regras
 

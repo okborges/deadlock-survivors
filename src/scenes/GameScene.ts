@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
-import { CAMERA, ENEMY, TEXTURES, WEAPON, WORLD } from '../config';
+import { ANIMS, CAMERA, ENEMY, TEXTURES, WEAPON, WORLD } from '../config';
 import type { Bullet } from '../entities/Bullet';
 import type { Enemy } from '../entities/Enemy';
 import { Player } from '../entities/Player';
 import { AutoFire } from '../systems/AutoFire';
+import { EnemyHealthBars } from '../systems/EnemyHealthBars';
 import { EnemySpawner } from '../systems/EnemySpawner';
 import { generatePlaceholderTextures } from '../textures';
 import { HUD_KEYS, HudScene } from './HudScene';
@@ -15,6 +16,7 @@ export class GameScene extends Phaser.Scene {
   private player!: Player;
   private autoFire!: AutoFire;
   private spawner!: EnemySpawner;
+  private healthBars!: EnemyHealthBars;
   private grass!: Phaser.GameObjects.TileSprite;
   private kills = 0;
   private elapsedMs = 0;
@@ -24,8 +26,23 @@ export class GameScene extends Phaser.Scene {
     super(GameScene.KEY);
   }
 
+  preload(): void {
+    this.load.spritesheet(TEXTURES.enemy, ENEMY.sprite, {
+      frameWidth: ENEMY.frameWidth,
+      frameHeight: ENEMY.frameHeight,
+    });
+  }
+
   create(): void {
     if (!this.textures.exists(TEXTURES.player)) generatePlaceholderTextures(this);
+    if (!this.anims.exists(ANIMS.enemyWalk)) {
+      this.anims.create({
+        key: ANIMS.enemyWalk,
+        frames: this.anims.generateFrameNumbers(TEXTURES.enemy, { start: 0, end: 1 }),
+        frameRate: ENEMY.walkFrameRate,
+        repeat: -1,
+      });
+    }
     this.input.mouse?.disableContextMenu();
 
     this.kills = 0;
@@ -39,6 +56,7 @@ export class GameScene extends Phaser.Scene {
 
     this.autoFire = new AutoFire(this, this.player);
     this.spawner = new EnemySpawner(this, this.player);
+    this.healthBars = new EnemyHealthBars(this, this.spawner.enemies);
 
     // Projétil acerta inimigo.
     this.physics.add.overlap(this.autoFire.bullets, this.spawner.enemies, (b, e) => {
@@ -68,6 +86,7 @@ export class GameScene extends Phaser.Scene {
     this.elapsedMs += delta;
     this.player.update();
     this.spawner.update(delta);
+    this.healthBars.update();
     this.updateGrass();
     this.syncHud();
   }

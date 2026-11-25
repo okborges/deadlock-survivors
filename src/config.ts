@@ -23,12 +23,27 @@ export const WEAPON = {
 } as const;
 
 export const ENEMY = {
-  size: 10,
+  // Spritesheet em public/assets/sprites/enemy-sentinel.png (2 quadros de 16x20).
+  sprite: 'assets/sprites/enemy-sentinel.png',
+  frameWidth: 16,
+  frameHeight: 20,
+  walkFrameRate: 4,
+  bodyWidth: 12, // hitbox menor que o desenho, para colisões mais justas
+  bodyHeight: 16,
   speed: 70,
-  maxHp: 1,
+  maxHp: 3,
   contactDamage: 10,
-  color: 0xe5484d,
   maxAlive: 300,
+} as const;
+
+/** Barra de vida vertical ao lado de cada inimigo. */
+export const ENEMY_HP_BAR = {
+  width: 2,
+  height: 12,
+  offsetX: 10, // distância do centro do inimigo até a barra (para a direita)
+  offsetY: -4, // posição vertical do centro da barra em relação ao inimigo
+  color: 0xff3030,
+  backgroundColor: 0x2a0a0a,
 } as const;
 
 export const SPAWNER = {
@@ -53,4 +68,9 @@ export const TEXTURES = {
   gun: 'gun',
   enemy: 'enemy',
   bullet: 'bullet',
+} as const;
+
+/** Chaves das animações criadas em GameScene. */
+export const ANIMS = {
+  enemyWalk: 'enemy-walk',
 } as const;

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { ENEMY, PLAYER, TEXTURES, WEAPON, WORLD } from './config';
+import { PLAYER, TEXTURES, WEAPON, WORLD } from './config';
 
 /**
  * Gera texturas simples por código, enquanto ainda não temos pixel art.
@@ -43,12 +43,6 @@ export function generatePlaceholderTextures(scene: Phaser.Scene): void {
   // "Cano" que mostra a direção da mira.
   g.fillStyle(0xdddddd).fillRect(0, 0, 12, 3);
   g.generateTexture(TEXTURES.gun, 12, 3);
-  g.clear();
-
-  // Inimigo.
-  g.fillStyle(0x5c1416).fillRect(0, 0, ENEMY.size, ENEMY.size);
-  g.fillStyle(ENEMY.color).fillRect(1, 1, ENEMY.size - 2, ENEMY.size - 2);
-  g.generateTexture(TEXTURES.enemy, ENEMY.size, ENEMY.size);
   g.clear();
 
   // Projétil.
