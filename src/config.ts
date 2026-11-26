@@ -23,13 +23,14 @@ export const WEAPON = {
 } as const;
 
 export const ENEMY = {
-  // Spritesheet em public/assets/sprites/enemy-sentinel.png (2 quadros de 16x20).
+  // Spritesheet em public/assets/sprites/enemy-sentinel.png (4 quadros de 16x16).
   sprite: 'assets/sprites/enemy-sentinel.png',
   frameWidth: 16,
-  frameHeight: 20,
-  walkFrameRate: 4,
-  bodyWidth: 12, // hitbox menor que o desenho, para colisões mais justas
-  bodyHeight: 16,
+  frameHeight: 16,
+  walkFrames: 4,
+  walkFrameMs: 200, // duração de cada quadro da animação de andar
+  bodyWidth: 10, // hitbox menor que o desenho, para colisões mais justas
+  bodyHeight: 14,
   speed: 70,
   maxHp: 3,
   contactDamage: 10,
@@ -41,7 +42,7 @@ export const ENEMY_HP_BAR = {
   width: 2,
   height: 12,
   offsetX: 10, // distância do centro do inimigo até a barra (para a direita)
-  offsetY: -4, // posição vertical do centro da barra em relação ao inimigo
+  offsetY: -1, // posição vertical do centro da barra em relação ao inimigo
   color: 0xff3030,
   backgroundColor: 0x2a0a0a,
 } as const;

@@ -15,7 +15,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.enableBody(true, x, y, true, true);
     this.body!.setSize(ENEMY.bodyWidth, ENEMY.bodyHeight);
     // Quadro inicial aleatório para os inimigos não andarem todos em sincronia.
-    this.play({ key: ANIMS.enemyWalk, startFrame: Phaser.Math.Between(0, 1) });
+    this.play({ key: ANIMS.enemyWalk, startFrame: Phaser.Math.Between(0, ENEMY.walkFrames - 1) });
   }
 
   /** Persegue o alvo em linha reta. */

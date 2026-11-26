@@ -32,6 +32,7 @@ Fan game open source, sem fins comerciais, no estilo "survivors" (ondas de inimi
 5. HUD/interface fica na `HudScene` (sem zoom da câmera). Comunicação entre cenas via `this.registry`.
 6. Não adicione dependências npm sem o usuário pedir explicitamente.
 7. **Nunca** use, baixe ou referencie assets (sprites, sons, imagens) do jogo da Valve. Só arte original em `public/assets/`.
+   Personagens seguem o padrão visual do `CONTRIBUTING.md`: estilo "tiny" (chibi), quadros de **16x16** desenhados em 1x (sem `setScale`), spritesheet em linha horizontal. Quantidade de quadros e duração (ms) de cada animação vão em `src/config.ts`.
 8. Comentários e textos visíveis no jogo em português; identificadores em inglês.
 9. Sem `any`. Prefira tipos explícitos nas fronteiras públicas das classes.
 

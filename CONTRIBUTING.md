@@ -39,6 +39,29 @@ O CI roda `npm run check` em todo PR. PR com CI vermelho não é revisado até f
 - Coloque os arquivos em `public/assets/` (ex.: `public/assets/sprites/`, `public/assets/sfx/`), em PNG (imagens) e OGG/MP3 (áudio).
 - Ao enviar arte, você concorda em licenciá-la sob **CC BY-NC-SA 4.0**. Diga no PR como quer ser creditado.
 
+### Padrão visual dos personagens
+
+Todos os personagens (jogador, inimigos, chefes pequenos) seguem o mesmo padrão, para o jogo parecer feito por uma pessoa só:
+
+- **Estilo "tiny" (chibi):** personagem pequeno e "fofinho", com cabeça/corpo grandes e membros curtos, simples o bastante para ser reconhecido em 16 px. Poucos detalhes, silhueta forte.
+- **Quadro de 16x16 pixels.** O personagem cabe dentro do quadro; deixe ~1 px de folga nas bordas.
+- **Desenhe em 1x**: cada pixel do PNG é um pixel da arte. Não amplie antes de exportar — o jogo já amplia com o zoom da câmera.
+- Recomendado: **contorno escuro de 1 px** e poucas cores por personagem (algo como 4 a 8), com 1 ou 2 tons de sombra.
+
+### Formato dos arquivos (spritesheet)
+
+- Cada animação é um PNG com os quadros **lado a lado numa linha só** (4 quadros de 16x16 = imagem de 64x16).
+- Nome: `<tipo>-<nome>.png` para a animação principal (andar) e `<tipo>-<nome>_<animação>.png` para as outras.
+  Ex.: `enemy-sentinel.png`, `enemy-sentinel_attack.png`, `player-hero.png`.
+- No PR, diga quantos quadros tem cada animação e quanto tempo dura cada quadro (ex.: "4 quadros, 200 ms"). Esses números vão para `src/config.ts`.
+
+**Exportando no Aseprite:** `File → Export → Export Sprite Sheet` (`Ctrl+E`):
+
+1. **Layout:** Sheet Type `Horizontal Strip`, Constraints `None`.
+2. **Sprite:** Layers `Visible layers`; Frames `All frames` (ou a tag da animação).
+3. **Borders:** tudo zerado; **desmarque** `Trim Sprite` e `Trim Cels` (todos os quadros precisam ter o mesmo tamanho).
+4. **Output:** marque `Output File`, salve em `public/assets/sprites/`; deixe `JSON Data` desmarcado.
+
 ## Usando IA (Claude, etc.)
 
 Usar IA é permitido e bem-vindo. O repositório tem um [CLAUDE.md](CLAUDE.md) que ensina o Claude a seguir os padrões do projeto. Mas:

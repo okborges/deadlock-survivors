@@ -38,8 +38,11 @@ export class GameScene extends Phaser.Scene {
     if (!this.anims.exists(ANIMS.enemyWalk)) {
       this.anims.create({
         key: ANIMS.enemyWalk,
-        frames: this.anims.generateFrameNumbers(TEXTURES.enemy, { start: 0, end: 1 }),
-        frameRate: ENEMY.walkFrameRate,
+        frames: this.anims.generateFrameNumbers(TEXTURES.enemy, {
+          start: 0,
+          end: ENEMY.walkFrames - 1,
+        }),
+        frameRate: 1000 / ENEMY.walkFrameMs,
         repeat: -1,
       });
     }
